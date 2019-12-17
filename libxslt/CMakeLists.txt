@@ -23,7 +23,13 @@ set(LIB_SRCS
   xsltutils.c
   )
 
-set(LIB_HDRS
+set(LIB_INTERNAL_HDRS
+  libxslt.h
+  trio.h
+  triodef.h
+  )
+
+set(LIB_API_HDRS
   attributes.h
   documents.h
   extensions.h
@@ -31,7 +37,6 @@ set(LIB_HDRS
   functions.h
   imports.h
   keys.h
-  libxslt.h
   namespaces.h
   numbersInternals.h
   pattern.h
@@ -39,8 +44,6 @@ set(LIB_HDRS
   security.h
   templates.h
   transform.h
-  trio.h
-  triodef.h
   variables.h
   xslt.h
   xsltInternals.h
@@ -76,7 +79,7 @@ set(LIBXSLT_DEFAULT_PLUGINS_PATH ${CMAKE_INSTALL_PREFIX}/libxslt)
 set(XSLT_CONFIG_HDR ${CMAKE_CURRENT_BINARY_DIR}/xsltconfig.h)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/xsltconfig.h.in ${XSLT_CONFIG_HDR} @ONLY)
 
-add_library(xslt ${LIB_SRCS} ${LIB_HDRS} ${CONFIG_HDR} ${XSLT_CONFIG_HDR})
+add_library(xslt ${LIB_SRCS} ${LIB_INTERNAL_HDRS} ${LIB_API_HDRS} ${CONFIG_HDR} ${XSLT_CONFIG_HDR})
 target_include_directories(xslt PRIVATE ${PROJECT_BINARY_DIR})
 target_include_directories(xslt PUBLIC
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
@@ -99,7 +102,7 @@ install(TARGETS xslt EXPORT libxslt-targets
 )
 
 install(FILES
-  libxslt.h
+  ${LIB_API_HDRS}
   ${XSLT_CONFIG_HDR}
   DESTINATION include/libxslt
   COMPONENT development
