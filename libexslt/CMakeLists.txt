@@ -1,3 +1,5 @@
+
+
 set(LIB_SRCS
   common.c
   date.c
@@ -21,6 +23,17 @@ if(EXSLT_CRYPTO_ENABLED)
     crypto.c
     )
 endif()
+
+set(LIBEXSLT_VERSION_MAJOR 0)
+set(LIBEXSLT_VERSION_MINOR 8)
+set(LIBEXSLT_VERSION_PATCH 20)
+set(VERSION ${LIBEXSLT_VERSION_MAJOR}.${LIBEXSLT_VERSION_MINOR}.${LIBEXSLT_VERSION_PATCH})
+pad_string(_PADDED_VERSION_MINOR 2 0 ${LIBEXSLT_VERSION_MINOR})
+pad_string(_PADDED_VERSION_PATCH 2 0 ${LIBEXSLT_VERSION_PATCH})
+set(LIBEXSLT_VERSION_NUMBER ${_PADDED_VERSION_MINOR}${_PADDED_VERSION_PATCH})
+set(WITH_CRYPTO 0)
+set(EXSLT_CONFIG_HDR ${CMAKE_CURRENT_BINARY_DIR}/exsltconfig.h)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/exsltconfig.h.in ${EXSLT_CONFIG_HDR} @ONLY)
 
 add_library(exslt ${LIB_SRCS} ${LIB_HDRS})
 target_include_directories(exslt PRIVATE ${PROJECT_BINARY_DIR})
@@ -47,6 +60,7 @@ install(TARGETS exslt EXPORT libxslt-targets
 
 install(FILES
   exslt.h
+  ${EXSLT_CONFIG_HDR}
   DESTINATION include/libexslt
   COMPONENT development
 )
