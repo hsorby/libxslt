@@ -503,7 +503,7 @@ exsltMathRandomFunction (xmlXPathParserContextPtr ctxt, int nargs) {
 
 #endif /* defined(HAVE_STDLIB_H) && defined(RAND_MAX) */
 
-#if HAVE_MATH_H
+#ifdef HAVE_MATH_H
 
 /**
  * exsltMathAbs:
@@ -1067,7 +1067,7 @@ exsltMathRegister (void) {
 				   EXSLT_MATH_NAMESPACE,
 				   exsltMathRandomFunction);
 #endif
-#if HAVE_MATH_H
+#ifdef HAVE_MATH_H
     xsltRegisterExtModuleFunction ((const xmlChar *) "abs",
 				   EXSLT_MATH_NAMESPACE,
 				   exsltMathAbsFunction);
@@ -1142,7 +1142,7 @@ exsltMathXpathCtxtRegister (xmlXPathContextPtr ctxt, const xmlChar *prefix)
                                    (const xmlChar *) EXSLT_MATH_NAMESPACE,
                                    exsltMathRandomFunction)
 #endif
-#if HAVE_MATH_H
+#ifdef HAVE_MATH_H
         && !xmlXPathRegisterFuncNS(ctxt,
                                    (const xmlChar *) "abs",
                                    (const xmlChar *) EXSLT_MATH_NAMESPACE,

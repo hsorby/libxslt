@@ -771,7 +771,7 @@ exsltDateCurrent (void)
         errno = 0;
 	secs = (time_t) strtol (source_date_epoch, NULL, 10);
 	if (errno == 0) {
-#if HAVE_GMTIME_R
+#ifdef HAVE_GMTIME_R
 	    if (gmtime_r(&secs, &localTm) != NULL)
 	        override = 1;
 #else
@@ -789,7 +789,7 @@ exsltDateCurrent (void)
     /* get current time */
 	secs    = time(NULL);
 
-#if HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
 	localtime_r(&secs, &localTm);
 #else
 	localTm = *localtime(&secs);
@@ -808,7 +808,7 @@ exsltDateCurrent (void)
     ret->sec  = (double) localTm.tm_sec;
 
     /* determine the time zone offset from local to gm time */
-#if HAVE_GMTIME_R
+#ifdef HAVE_GMTIME_R
     gmtime_r(&secs, &gmTm);
 #else
     tb = gmtime(&secs);
