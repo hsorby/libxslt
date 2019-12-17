@@ -15,6 +15,9 @@ set(LIB_HDRS
   exsltexports.h
   libexslt.h
   )
+if(WIN32 AND MSVC)
+  set(EXSLT_CRYPTO_ENABLED TRUE)
+endif()
 
 if(EXSLT_CRYPTO_ENABLED)
   list(APPEND LIB_SRCS
