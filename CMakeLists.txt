@@ -10,7 +10,7 @@ get_property(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
 
 option(BUILD_SHARED_LIBS "Build libraries as shared objects if true." ON)
 option(WITHOUT_DEBUGGER "Build without debuging output." OFF)
-option(WITHOUT_DEBUGGER "Build without profilling support." ON)
+option(WITHOUT_PROFILER "Build without profilling support." ON)
 
 set(_PARAM_ANNOTATION "Install path prefix, prepended onto install directories.")
 set(LIBXSLT_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX} CACHE PATH ${_PARAM_ANNOTATION})
