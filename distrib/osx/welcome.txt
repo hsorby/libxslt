@@ -1,0 +1,4 @@
+This installer will guide you through the installation of libxslt on your machine. The installer will install the libxslt libraries and API header files.
+
+Thanks and enjoy.
+
