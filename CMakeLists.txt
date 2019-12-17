@@ -45,8 +45,10 @@ endif()
 
 include(environmentchecks)
 
-set(CONFIG_HDR ${CMAKE_CURRENT_BINARY_DIR}/config.h)
-configure_file(${PROJECT_SOURCE_DIR}/cmake/config.in.h ${CONFIG_HDR})
+if(NOT WIN32 AND NOT MSVC)
+  set(CONFIG_HDR ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+  configure_file(${PROJECT_SOURCE_DIR}/cmake/config.in.h ${CONFIG_HDR})
+endif()
 
 add_subdirectory(libxslt)
 add_subdirectory(libexslt)

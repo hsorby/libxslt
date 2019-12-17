@@ -11,7 +11,7 @@
 #define __XSLT_LIBXSLT_H__
 
 #if defined(_WIN32) && !defined (__CYGWIN__) && !defined (__MINGW32__)
-#include <win32config.h>
+#include <libxslt/win32config.h>
 #else
 #include "config.h"
 #endif
